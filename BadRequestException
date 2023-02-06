@@ -1,0 +1,9 @@
+public class BadRequestException extends RunTimeException{
+private static final long serialversionUID = 1L;
+private String errorMsg;
+public getErrorMessage(){
+return errorMsg;}
+public BadException(String msg){
+super(msg);
+}
+}
