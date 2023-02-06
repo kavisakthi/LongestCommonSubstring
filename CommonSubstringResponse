@@ -1,0 +1,9 @@
+public class CommonSubstringResponse  {
+@JsonProperty("lcs")
+List<Value> lcs = new ArrayList<>();
+public List<Value> getLcs(){
+return lcs;}
+public void setLcs(List<Value> lcs){
+this.lcs = lcs;
+}
+}
