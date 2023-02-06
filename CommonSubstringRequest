@@ -1,0 +1,10 @@
+public class CommonSubstringRequest {
+@JsonProperty("setOfStrings")
+public List<SetOfString> setOfStrings;
+public List<SetOfString> getSetOfStrings(){
+return setOfStrings;
+}
+public void setSetOfStrings( List<SetOfString> setOfStrings){
+this.setOfStrings=setOfStrings;
+}
+}
