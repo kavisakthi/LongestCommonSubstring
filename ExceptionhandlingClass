@@ -1,0 +1,9 @@
+@RestControllerAdvice
+public class ExceptionhandlingClass{
+@org.springframework.web.bind.annotation.ResponseStatus(HttpStatus.BAD_REQUEST)
+@ExceptionHandler(value = BadRequestException .class)
+
+public ErrorResponse badRequest(Exception e){
+ErrorResponse.setMessage(e.getMsg());
+return ErrorResponse ;
+}}
