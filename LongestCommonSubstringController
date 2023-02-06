@@ -1,0 +1,13 @@
+@RestController
+@Requestmapping
+public class LongestCommonSubstringController {
+@Autowired
+LongestCommonSubstringService service;
+@Autowired
+LongestCommonSubstringValidator validator;
+@PostMapping("/lcs") //mapping the path
+public CommonSubstringResponse getLongestCommonSubstring( @Valid @RequestBody CommonSubstringRequest request) throws BadRequestException{
+validator.validateRequest(request); //requestvalidation
+CommonSubstringResponse  response = service.findLongestCommonSubstring(request); //algorithm logic to find the longest common substring
+}
+}
