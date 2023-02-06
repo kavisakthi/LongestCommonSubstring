@@ -1,0 +1,43 @@
+@Component
+public class LongestCommonSubstringService {
+public CommonSubstringResponse  findLongestCommonSubstring(CommonSubstringRequest request){
+CommonSubstringResponse  response = new CommonSubstringResponse  ();
+List<String> listOfStrings = new ArrayList<String>();
+try{
+for(SetofString set : request.getSetOFStrings()){
+listOfStrings .add(set.getValue());
+}
+List<String> distinctStrings = listOfStrings.stream().distinct().collect(Collectors.toList()); //distinct list
+if(distinctStrings .size() != listOfStrings.size()){    //throw error if the list have duplicate
+throw new BadRequestException("SetOfStrings are not unique. Please give a set of Strings without Duplicates");
+}
+//sorting with strings with lowest length
+Collections.sort(listOfStrings, Comparator.comparing(String::length));
+String[] arrayOfStrings = listOfStrings.toArray(new String[0]); //converting to array 
+int arraylength = arrayOfStrings .length;
+List<Value> resultOfCommonSubstring = new ArrayList<Value>();
+String firstElement = arrayOfStrings [0]; //first element is the reference
+int lengthOfFirstElement = firstElement .length();
+String tempResult = "";
+for (int i=0; i < lengthOfFirstElement ; i++){
+for(int j=i+1; j <= lengthOfFirstElement; j++) {
+String substrings = firstElement.substring(i,j);
+int k =1;
+for (k=1; k < arraylength; k++) 
+if(!arrayOfStrings[k].contains(substrings))
+break;
+if(k == arraylength  && tempResult .length() < substrings.length())
+tempResult  = substrings ;
+}
+}
+Value value = new Value ();
+value.setValue(tempResult);
+resultOfCommonSubstring.add(value);
+response.setLcs(resultOfCommonSubstring);
+return response;
+} catch(BadRequestException e){
+throw new BadRequestException(e.getMessage());
+
+}
+}
+}
