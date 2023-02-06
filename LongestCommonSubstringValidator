@@ -1,0 +1,6 @@
+public class LongestCommonSubstringValidator {
+public void validateRequest(CommonSubstringRequest request){
+if(request.getSetOfStrings().isEmpty()){ //throw error if the list is empty
+throw new BadRequestException("SetOfStrings should not be Empty");
+}
+}
